@@ -1,0 +1,689 @@
+:root {
+  --bg: #070707;
+
+  --gold: #d4b06a;
+
+  --cream: #e8ddd0;
+
+  --blue: #5d7eff;
+
+  --red: #d85c72;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  transition: opacity 1s ease;
+  font-family: "Cormorant Garamond", serif;
+  background: #050505;
+  overflow-x: hidden;
+  color: white;
+  font-family: "Cormorant Garamond", serif;
+}
+body.fade-out {
+  opacity: 0;
+}
+/* HERO */
+
+.hero {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.06),
+      transparent 60%
+    ),
+    #050505;
+}
+.season img {
+  border-radius: 10%;
+}
+.hero-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+}
+
+.hero h1 {
+  position: relative;
+  overflow: hidden;
+  font-size: 72px;
+  letter-spacing: 14px;
+  font-weight: 300;
+  color: var(--cream);
+  animation: breathe 6s ease-in-out infinite;
+}
+.hero h1::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -60%;
+
+  width: 40%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  animation: shine 4s linear infinite;
+}
+.tagline {
+  margin-top: 24px;
+
+  font-size: 20px;
+
+  letter-spacing: 6px;
+
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#enterBtn {
+  margin-top: 60px;
+
+  padding: 14px 40px;
+
+  border: none;
+
+  cursor: pointer;
+
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(93, 126, 255, 0.15),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(216, 92, 114, 0.12),
+      transparent 40%
+    ),
+    #070707;
+
+  letter-spacing: 6px;
+
+  backdrop-filter: blur(15px);
+
+  transition: 0.4s;
+}
+
+#enterBtn:hover {
+  transform: translateY(-4px);
+
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* MENU */
+
+#storyMenu {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.95);
+
+  backdrop-filter: blur(25px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.6s;
+
+  z-index: 1000;
+}
+
+#storyMenu.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-content {
+  width: 90%;
+  max-width: 1200px;
+
+  text-align: center;
+}
+
+.menu-content h2 {
+  margin-bottom: 40px;
+
+  font-size: 42px;
+
+  font-weight: 300;
+
+  letter-spacing: 8px;
+}
+
+.continue-btn {
+  margin-bottom: 60px;
+
+  padding: 12px 28px;
+
+  border: none;
+
+  cursor: pointer;
+
+  background: white;
+
+  color: black;
+
+  font-weight: bold;
+}
+
+.season-grid {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 30px;
+
+  flex-wrap: wrap;
+}
+
+.season {
+  position: relative;
+
+  width: 280px;
+  height: 380px;
+
+  overflow: hidden;
+
+  text-decoration: none;
+
+  color: white;
+}
+
+.season img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.8s;
+}
+
+.season::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.season:hover img {
+  transform: scale(1.08);
+}
+#enterBtn {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  background: rgba(255, 255, 255, 0.05);
+
+  color: white;
+
+  letter-spacing: 8px;
+
+  border-radius: 40px;
+
+  padding: 18px 50px;
+}
+#enterBtn:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 0 30px rgba(212, 176, 106, 0.25);
+
+  border-color: rgba(212, 176, 106, 0.5);
+}
+.hero-content {
+  position: relative;
+}
+.hero-content::before {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.06),
+    transparent 70%
+  );
+
+  filter: blur(80px);
+
+  z-index: -1;
+}
+.particles {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  overflow: hidden;
+
+  z-index: 1;
+}
+.particles span {
+  position: absolute;
+
+  top: -20px;
+
+  width: 2px;
+  height: 2px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.6);
+
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+
+  animation: floatParticle linear infinite;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05),
+    transparent 70%
+  );
+
+  filter: blur(80px);
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+#readingGate {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(25px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(0.96);
+
+  transition: 0.5s;
+
+  z-index: 2000;
+}
+
+#readingGate.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+#readingGate.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+.gate-title {
+  font-size: 42px;
+  letter-spacing: 8px;
+  color: #e8ddd0;
+
+  margin-bottom: 10px;
+
+  font-weight: 300;
+}
+.progress-container {
+  width: 100%;
+  max-width: 500px;
+
+  margin: 0 auto 50px;
+}
+.progress-fill {
+  width: 0%;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(90deg, #d4b06a, #fff);
+
+  box-shadow: 0 0 15px rgba(212, 176, 106, 0.6);
+
+  transition: width 0.8s ease;
+}
+.progress-track {
+  height: 6px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border-radius: 999px;
+
+  overflow: hidden;
+}
+
+.progress-text {
+  margin-top: 15px;
+
+  letter-spacing: 4px;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size: 14px;
+}
+.continue-reading {
+  padding: 16px 40px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(212, 176, 106, 0.3);
+
+  background: rgba(212, 176, 106, 0.08);
+
+  color: white;
+
+  cursor: pointer;
+
+  letter-spacing: 4px;
+
+  transition: 0.4s;
+}
+
+.continue-reading:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 0 25px rgba(212, 176, 106, 0.25);
+
+  border-color: rgba(212, 176, 106, 0.8);
+}
+.start-over {
+  padding: 16px 40px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.05);
+
+  color: rgba(255, 255, 255, 0.8);
+
+  cursor: pointer;
+
+  transition: 0.4s;
+}
+
+.start-over:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.gate-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+
+  margin-top: 40px;
+}
+.gate-subtitle {
+  color: rgba(255, 255, 255, 0.55);
+
+  letter-spacing: 3px;
+
+  margin-bottom: 50px;
+}
+#backToSeasons {
+  position: absolute;
+
+  top: 30px;
+  left: 30px;
+
+  background: none;
+
+  border: none;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 16px;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+#backToSeasons:hover {
+  color: white;
+
+  transform: translateX(-4px);
+}
+.gate-box {
+  width: min(90%, 550px);
+
+  padding: 50px;
+  border-radius: 24px;
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(20px);
+}
+
+.gate-box h2 {
+  font-size: 42px;
+
+  letter-spacing: 6px;
+
+  margin-bottom: 20px;
+}
+
+.last-read {
+  color: rgba(255, 255, 255, 0.7);
+
+  margin-bottom: 30px;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(-50px) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.7;
+  }
+
+  90% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+@keyframes titleFloat {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes shine {
+  0% {
+    left: -60%;
+  }
+
+  100% {
+    left: 160%;
+  }
+}
+/* =========================
+   📱 MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .hero h1{
+    font-size: 38px;
+    letter-spacing: 6px;
+    padding: 0 15px;
+  }
+
+  .tagline{
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 0 20px;
+  }
+
+  #enterBtn{
+    margin-top: 40px;
+    padding: 14px 32px;
+    font-size: 14px;
+    letter-spacing: 4px;
+  }
+
+  .menu-content h2{
+    font-size: 28px;
+    letter-spacing: 4px;
+  }
+
+  .season-grid{
+    gap: 20px;
+  }
+
+  .season{
+    width: 220px;
+    height: 300px;
+  }
+
+  .season-title{
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .gate-box{
+    width: 92%;
+    padding: 30px 20px;
+  }
+
+  .gate-box h2{
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+
+  .last-read{
+    font-size: 14px;
+  }
+
+  .progress-text{
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .gate-actions{
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .continue-reading,
+  .start-over{
+    width: 100%;
+    padding: 14px;
+  }
+
+  #backToSeasons{
+    top: 15px;
+    left: 15px;
+    font-size: 14px;
+  }
+
+  .hero::before{
+    width: 400px;
+    height: 400px;
+  }
+
+  .hero-content::before{
+    width: 300px;
+    height: 300px;
+  }
+}
+@media (max-width: 480px){
+
+  .hero h1{
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+
+  .tagline{
+    font-size: 13px;
+  }
+
+  .season{
+    width: 180px;
+    height: 250px;
+  }
+
+  .gate-box{
+    padding: 25px 15px;
+  }
+
+  .gate-box h2{
+    font-size: 24px;
+  }
+}

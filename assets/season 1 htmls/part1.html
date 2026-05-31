@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Part 01</title>
+
+    <link rel="stylesheet" href="../style/part1.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- PAGE 1 -->
+
+      <div id="page1" class="page active">
+        <section class="story-page">
+          <div class="story-content">
+            <div class="story-title">
+              <h1 id="chapterTitle"></h1>
+            </div>
+
+            <div class="story-text" id="story"></div>
+
+            <div class="nav-buttons">
+              <button id="prevPart">← Previous</button>
+              <button id="nextPart">Next →</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="bg-music" loop></audio>
+
+    <button id="musicBtn">🎧</button>
+    <div id="cinematicTransition">
+      <div class="cinematic-content">
+        <div class="cinematic-line"></div>
+        <h2 id="cinematicTitle"></h2>
+      </div>
+    </div>
+    <script src="../js/typewriter.js"></script>
+  </body>
+</html>

@@ -1,0 +1,487 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(70, 120, 255, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 70, 100, 0.14),
+      transparent 35%
+    ),
+    #090909;
+
+  color: #e8ddd0;
+
+  font-family: "Vazirmatn", sans-serif;
+}
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+body::before,
+body::after {
+  content: "";
+
+  position: fixed;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  filter: blur(130px);
+
+  z-index: -1;
+}
+
+body::before {
+  background: rgba(70, 120, 255, 0.15);
+
+  top: -150px;
+  left: -150px;
+}
+
+body::after {
+  background: rgba(255, 70, 100, 0.12);
+
+  bottom: -150px;
+  right: -150px;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.story-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 60px 20px;
+}
+
+.story-content {
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  margin: 0 auto;
+}
+.global-title {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 8px;
+  font-size: 40px;
+  animation: fadeOut 5s forwards;
+  color: #fff;
+  z-index: 1000;
+  transition: 0.4s;
+
+  /* مهم برای ماسک */
+  display: inline-block;
+  overflow: hidden;
+}
+body.scrolled .global-title {
+  opacity: 0.6;
+  transform: translateX(-50%) scale(0.95);
+}
+/* 🔥 نور واقعی روی متن */
+.global-title::after {
+  content: "";
+  margin-bottom: 10px;
+  position: absolute;
+  top: 0;
+  left: -60%;
+
+  width: 50%;
+  height: 100%;
+
+  /* 🎨 نور شارپ‌تر */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(43, 76, 126, 0) 20%,
+    rgba(43, 76, 126, 0.9) 45%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(122, 46, 58, 0.9) 55%,
+    rgba(122, 46, 58, 0) 80%,
+    transparent 100%
+  );
+
+  transform: skewX(-25deg);
+
+  /* 🔥 مهم: فقط روی متن دیده بشه */
+  mix-blend-mode: screen;
+  opacity: 1;
+
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -60%;
+  }
+  100% {
+    left: 160%;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* =========================
+   PROGRESS
+========================= */
+
+/* =========================
+   TITLE
+========================= */
+
+.story-title {
+  margin-bottom: 50px;
+  padding-top: 80px;
+}
+
+.story-title h1 {
+  font-size: 48px;
+
+  color: #ff8c00;
+
+  letter-spacing: 10px;
+
+  font-family: "Cormorant Garamond", serif;
+}
+
+@keyframes softGlow {
+  from {
+    text-shadow:
+      0 0 10px rgba(100, 140, 255, 0.25),
+      0 0 20px rgba(255, 100, 120, 0.15);
+  }
+
+  to {
+    text-shadow:
+      0 0 25px rgba(100, 140, 255, 0.5),
+      0 0 45px rgba(255, 100, 120, 0.25);
+  }
+}
+
+/* =========================
+   STORY
+========================= */
+#cinematicTransition {
+  position: fixed;
+  inset: 0;
+
+  background: #050505;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  z-index: 999999;
+
+  transition:
+    opacity 0.45s ease,
+    visibility 0.45s ease;
+}
+
+#cinematicTransition.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* نور پس زمینه */
+
+#cinematicTransition::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(78, 124, 255, 0.18),
+    transparent 60%
+  );
+
+  animation: pulseGlow 1.5s ease infinite;
+}
+
+/* محتوای وسط */
+
+.cinematic-content {
+  text-align: center;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* خط */
+
+.cinematic-line {
+  width: 0;
+
+  height: 2px;
+
+  margin: 0 auto 25px;
+
+  background: linear-gradient(90deg, #4e7cff, #ff4664);
+
+  transition: width 0.7s ease;
+}
+
+#cinematicTransition.active .cinematic-line {
+  width: 260px;
+}
+
+/* عنوان */
+
+#cinematicTitle {
+  color: white;
+
+  font-size: 52px;
+
+  letter-spacing: 10px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  opacity: 0;
+
+  transform: translateY(25px);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+#cinematicTransition.active #cinematicTitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+.story-text {
+  width: 100%;
+
+  max-width: 700px;
+
+  text-align: center;
+
+  margin-bottom: 50px;
+}
+.paragraph {
+  direction: rtl;
+
+  text-align: center;
+
+  font-size: 30px;
+
+  line-height: 2.2;
+
+  color: #e8ddd0;
+
+  margin-bottom: 25px;
+}
+
+.paragraph.show {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav-buttons {
+  display: flex;
+
+  gap: 20px;
+
+  justify-content: center;
+
+  margin-top: 30px;
+}
+
+.nav-buttons button {
+  padding: 12px 22px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(12px);
+
+  transition: 0.3s ease;
+
+  font-family: "Vazirmatn", sans-serif;
+}
+
+.nav-buttons button:hover {
+  transform: translateY(-3px);
+
+  background: rgba(255, 140, 0, 0.18);
+
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.15);
+}
+
+.nav-buttons button:disabled {
+  opacity: 0.35;
+
+  cursor: not-allowed;
+}
+
+/* =========================
+   MUSIC
+========================= */
+#musicBtn {
+  position: fixed;
+  left: 25px;
+  bottom: 25px;
+
+  width: 55px;
+  height: 55px;
+
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  color: white;
+  font-size: 22px;
+
+  background: rgba(255,255,255,.08);
+
+  backdrop-filter: blur(15px);
+
+  box-shadow:
+    0 0 20px rgba(255,255,255,.05),
+    inset 0 0 15px rgba(255,255,255,.05);
+
+  transition: .3s;
+}
+
+#musicBtn:hover {
+  transform: scale(1.08);
+
+  box-shadow:
+    0 0 25px rgba(255,140,0,.25),
+    inset 0 0 15px rgba(255,140,0,.15);
+}
+
+#musicBtn.playing {
+  animation: pulseMusic 2s infinite;
+}
+
+@keyframes pulseMusic {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255,140,0,.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(255,140,0,0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255,140,0,0);
+  }
+}
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .story-page {
+    padding: 40px 20px;
+  }
+
+  .story-title h1 {
+    font-size: 42px;
+
+    letter-spacing: 4px;
+  }
+
+  .story-text {
+    font-size: 22px;
+
+    line-height: 2;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+  }
+
+  .nav-buttons button {
+    width: 100%;
+  }
+
+  #transitionPart {
+    font-size: 30px;
+  }
+}
