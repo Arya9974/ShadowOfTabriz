@@ -8,87 +8,94 @@
     <link rel="stylesheet" href="assets/style/style.css" />
   </head>
   <body>
+    <!-- HERO -->
     <div class="hero">
       <div class="particles"></div>
       <div class="hero-content">
         <h1>SHADOW OF TABRIZ</h1>
-
         <p class="tagline">Every Story Leaves A Scar</p>
-
         <button id="enterBtn">ENTER</button>
       </div>
     </div>
 
-    <!-- Overlay Menu -->
+    <!-- AMBIENT PROMPT -->
+    <button id="ambientBtn">🔇 Ambient</button>
 
+    <!-- STORY MENU -->
     <div id="storyMenu">
       <div class="menu-content">
         <h2>Choose Your Story</h2>
-
         <div class="season-grid">
-          <a href="#" class="season">
-            <img src="assets/images/avatar-10020766090.jpg" />
-
+          <a href="#" class="season" data-season="1">
+            <img src="assets/images/avatar-10020766090.jpg" alt="Season 1" />
             <div class="season-title">SEASON I</div>
           </a>
-
-          <a href="#" class="season">
-            <img src="assets/images/photo1778410718.jpeg" />
-
+          <a href="#" class="season" data-season="2">
+            <img src="assets/images/photo1778410718.jpeg" alt="Season 2" />
             <div class="season-title">SEASON II</div>
           </a>
-
-          <a href="#" class="season">
-            <img src="assets/images/photo1779220458.jpeg" />
-
+          <a href="#" class="season" data-season="3">
+            <img src="assets/images/photo1779220458.jpeg" alt="Season 3" />
             <div class="season-title">SEASON III</div>
           </a>
         </div>
       </div>
     </div>
 
-<div id="readingGate">
+    <!-- MODAL فصل -->
+    <div id="readingGate" class="modal">
+      <button class="btn-back" id="backToSeasons">← Back</button>
+      <div class="modal-content">
+        <h2>SEASON I</h2>
+        <p class="modal-subtitle last-read"></p>
 
-<button id="backToSeasons">
-← Back
-</button>
+        <!-- نوار پیشرفت -->
+        <div class="progress-container">
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
 
-<div class="gate-box">
+          <div class="progress-text"></div>
+        </div>
+        <!-- دکمه ها -->
+        <div class="modal-actions">
+          <button id="continueBtn" class="btn-primary">Continue Reading</button>
+          <button id="restartBtn" class="btn-secondary">Start Over</button>
+        </div>
 
-<h2>SEASON I</h2>
+        <!-- آرشیو -->
+        <div class="modal-archive">
+          <div class="archive-items">
+            <!-- آیتم های آرشیو اینجا اضافه میشن -->
+          </div>
+        </div>
+        <div class="section-card">
+          <a href="assets/season-1-htmls/archive.html" class="archive-btn">
+            Archive
+          </a>
+          <p>Evidence, Notes & Documents</p>
+        </div>
 
-<p class="last-read"></p>
-
-<div class="progress-container">
-
-<div class="progress-track">
-<div class="progress-fill"></div>
-</div>
-
-<div class="progress-text"></div>
-
-</div>
-<div class="gate-actions">
-
-<button id="continueBtn"
-class="continue-reading">
-Continue Reading
-</button>
-
-<button id="restartBtn"
-class="start-over">
-Start Over
-</button>
-
-</div>
-
-</div>
-
-</div>
+        <div class="section-card">
+          <a href="assets/season-1-htmls/characters.html">Characters</a>
+          <p>Known and Hidden Profiles</p>
+        </div>
+        <!-- کاراکترها -->
+        <div class="modal-archive">
+          <div class="character-items">
+            <!-- کاراکترها اینجا اضافه میشن -->
+          </div>
         </div>
       </div>
     </div>
+
+    <audio id="ambient" loop>
+      <source
+        src="assets/sounds/traian1984-ambience-wind-blowing-through-trees-01-186986.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
     <script src="assets/js/landing.js"></script>
   </body>
 </html>
-<div></div>

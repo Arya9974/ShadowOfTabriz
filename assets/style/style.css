@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "BNazanin";
+  src: url("../fonts/Vazir-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: weight;
+}
+
 :root {
   --bg: #070707;
 
@@ -9,6 +16,7 @@
 
   --red: #d85c72;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +25,7 @@
 
 body {
   transition: opacity 1s ease;
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Vazir", serif;
   background: #050505;
   overflow-x: hidden;
   color: white;
@@ -53,7 +61,9 @@ body.fade-out {
   z-index: 5;
   text-align: center;
 }
-
+.start-over {
+  opacity: 0.55;
+}
 .hero h1 {
   position: relative;
   overflow: hidden;
@@ -85,6 +95,7 @@ body.fade-out {
 
   animation: shine 4s linear infinite;
 }
+
 .tagline {
   margin-top: 24px;
 
@@ -189,7 +200,30 @@ body.fade-out {
 
   font-weight: bold;
 }
+.section-card {
+  width: 100%;
+  padding: 20px;
 
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  margin-top: 20px;
+}
+
+.section-card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(212, 176, 106, 0.4);
+
+  background: rgba(212, 176, 106, 0.04);
+}
 .season-grid {
   display: flex;
 
@@ -275,10 +309,39 @@ body.fade-out {
     rgba(255, 255, 255, 0.06),
     transparent 70%
   );
+}
+.progress-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto 50px;
+}
 
-  filter: blur(80px);
+.progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
 
-  z-index: -1;
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #d4b06a, #f3dfb1);
+  box-shadow: 0 0 15px rgba(212, 176, 106, 0.5);
+  transition: 0.8s;
+}
+
+.progress-text {
+  margin-top: 14px;
+  margin-bottom: 45px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.last-read {
+  margin-bottom: 30px;
 }
 .particles {
   position: fixed;
@@ -324,112 +387,139 @@ body.fade-out {
 
   transform: translate(-50%, -50%);
 }
-#readingGate {
+.modal {
   position: fixed;
   inset: 0;
-
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(25px);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   opacity: 0;
   visibility: hidden;
-
   transform: scale(0.96);
-
   transition: 0.5s;
-
   z-index: 2000;
 }
 
-#readingGate.active {
+.modal.active {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
 }
 
-#readingGate.active {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
+.modal-content {
+  width: min(90%, 600px);
+  padding: 40px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  text-align: center;
+  color: var(--cream);
 }
-.gate-title {
+
+.modal-content h2 {
   font-size: 42px;
-  letter-spacing: 8px;
-  color: #e8ddd0;
-
+  letter-spacing: 6px;
   margin-bottom: 10px;
-
   font-weight: 300;
 }
-.progress-container {
-  width: 100%;
-  max-width: 500px;
 
-  margin: 0 auto 50px;
-}
-.progress-fill {
-  width: 0%;
-
-  height: 100%;
-
-  border-radius: inherit;
-
-  background: linear-gradient(90deg, #d4b06a, #fff);
-
-  box-shadow: 0 0 15px rgba(212, 176, 106, 0.6);
-
-  transition: width 0.8s ease;
-}
-.progress-track {
-  height: 6px;
-
-  background: rgba(255, 255, 255, 0.08);
-
-  border-radius: 999px;
-
-  overflow: hidden;
+.modal-subtitle {
+  font-size: 16px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 30px;
 }
 
-.progress-text {
-  margin-top: 15px;
-
-  letter-spacing: 4px;
-
-  color: rgba(255, 255, 255, 0.75);
-
-  font-size: 14px;
+.modal-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
 }
-.continue-reading {
+
+.btn-primary {
   padding: 16px 40px;
-
   border-radius: 999px;
-
   border: 1px solid rgba(212, 176, 106, 0.3);
-
   background: rgba(212, 176, 106, 0.08);
-
   color: white;
-
   cursor: pointer;
-
   letter-spacing: 4px;
-
   transition: 0.4s;
 }
 
-.continue-reading:hover {
+.btn-primary:hover {
   transform: translateY(-4px);
-
   box-shadow: 0 0 25px rgba(212, 176, 106, 0.25);
-
   border-color: rgba(212, 176, 106, 0.8);
 }
-.start-over {
+
+.btn-secondary {
   padding: 16px 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.modal-archive {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.modal-archive h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+
+.archive-items,
+.character-items {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-back:hover {
+  color: white;
+  transform: translateX(-4px);
+}
+
+a {
+  text-decoration: none;
+  color: #e8ddd0;
+}
+
+#ambientBtn {
+  position: fixed;
+
+  right: 25px;
+  bottom: 25px;
+
+  z-index: 9999;
+
+  padding: 12px 20px;
 
   border-radius: 999px;
 
@@ -437,88 +527,20 @@ body.fade-out {
 
   background: rgba(255, 255, 255, 0.05);
 
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
 
   cursor: pointer;
 
-  transition: 0.4s;
-}
-
-.start-over:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-.gate-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 20px;
-
-  flex-wrap: wrap;
-
-  margin-top: 40px;
-}
-.gate-subtitle {
-  color: rgba(255, 255, 255, 0.55);
-
-  letter-spacing: 3px;
-
-  margin-bottom: 50px;
-}
-#backToSeasons {
-  position: absolute;
-
-  top: 30px;
-  left: 30px;
-
-  background: none;
-
-  border: none;
-
-  color: rgba(255, 255, 255, 0.7);
-
-  font-size: 16px;
-
-  letter-spacing: 2px;
-
-  cursor: pointer;
+  backdrop-filter: blur(20px);
 
   transition: 0.3s;
 }
 
-#backToSeasons:hover {
-  color: white;
+#ambientBtn:hover {
+  transform: translateY(-2px);
 
-  transform: translateX(-4px);
+  background: rgba(255, 255, 255, 0.1);
 }
-.gate-box {
-  width: min(90%, 550px);
-
-  padding: 50px;
-  border-radius: 24px;
-  text-align: center;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-  background: rgba(255, 255, 255, 0.04);
-
-  backdrop-filter: blur(20px);
-}
-
-.gate-box h2 {
-  font-size: 42px;
-
-  letter-spacing: 6px;
-
-  margin-bottom: 20px;
-}
-
-.last-read {
-  color: rgba(255, 255, 255, 0.7);
-
-  margin-bottom: 30px;
-}
-
 @keyframes floatParticle {
   0% {
     transform: translateY(-50px) translateX(0);
@@ -574,116 +596,332 @@ body.fade-out {
   }
 }
 /* =========================
-   📱 MOBILE
+    📱 MOBILE
+  ========================= */
+/* =========================
+   📱 MOBILE & TABLET
 ========================= */
-
-@media (max-width: 768px) {
-
-  .hero h1{
-    font-size: 38px;
-    letter-spacing: 6px;
-    padding: 0 15px;
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 60px;
+    letter-spacing: 10px;
   }
 
-  .tagline{
-    font-size: 15px;
-    letter-spacing: 2px;
-    padding: 0 20px;
-  }
-
-  #enterBtn{
-    margin-top: 40px;
-    padding: 14px 32px;
-    font-size: 14px;
+  .tagline {
+    font-size: 18px;
     letter-spacing: 4px;
   }
 
-  .menu-content h2{
+  #enterBtn {
+    padding: 16px 36px;
+    font-size: 16px;
+    letter-spacing: 5px;
+  }
+
+  .season-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .season {
+    width: 240px;
+    height: 330px;
+  }
+
+  .season-title {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .modal-content h2 {
+    font-size: 36px;
+    letter-spacing: 5px;
+  }
+
+  .modal-subtitle {
+    font-size: 14px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 14px 20px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .progress-container {
+    margin: 20px auto 40px;
+  }
+
+  .progress-text {
+    font-size: 13px;
+    margin-bottom: 30px;
+  }
+
+  .section-card {
+    padding: 16px;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 48px;
+    letter-spacing: 6px;
+  }
+
+  .tagline {
+    font-size: 15px;
+  }
+
+  #enterBtn {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+
+  .season {
+    width: 200px;
+    height: 280px;
+  }
+
+  .season-title {
+    font-size: 16px;
+  }
+
+  .modal-content h2 {
     font-size: 28px;
     letter-spacing: 4px;
   }
 
-  .season-grid{
-    gap: 20px;
+  .modal-subtitle {
+    font-size: 12px;
   }
 
-  .season{
+  .progress-text {
+    font-size: 12px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px;
+  }
+
+  .modal-actions {
+    gap: 10px;
+  }
+
+  .section-card h3 {
+    font-size: 16px;
+  }
+
+  .section-card p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+
+  .tagline {
+    font-size: 12px;
+  }
+
+  #enterBtn {
+    padding: 10px 24px;
+    font-size: 12px;
+  }
+
+  .season {
+    width: 160px;
+    height: 220px;
+  }
+
+  .season-title {
+    font-size: 14px;
+  }
+
+  .modal-content h2 {
+    font-size: 24px;
+    letter-spacing: 3px;
+  }
+
+  .modal-subtitle {
+    font-size: 11px;
+  }
+
+  .progress-text {
+    font-size: 11px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .section-card h3 {
+    font-size: 14px;
+  }
+
+  .section-card p {
+    font-size: 10px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+/* ==========================
+   RESPONSIVE FIX
+========================== */
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* مودال */
+.modal {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 700px;
+}
+
+/* موبایل */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+    letter-spacing: 6px;
+  }
+
+  .tagline {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  #enterBtn {
+    padding: 14px 30px;
+    font-size: 14px;
+    letter-spacing: 4px;
+  }
+
+  .menu-content h2 {
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+
+  .season-grid {
+    gap: 18px;
+  }
+
+  .season {
     width: 220px;
     height: 300px;
   }
 
-  .season-title{
-    font-size: 18px;
-    letter-spacing: 2px;
+  .modal-content {
+    padding: 24px;
+    border-radius: 18px;
   }
 
-  .gate-box{
-    width: 92%;
-    padding: 30px 20px;
+  .modal-content h2 {
+    font-size: 36px;
+    letter-spacing: 4px;
   }
 
-  .gate-box h2{
-    font-size: 28px;
-    letter-spacing: 3px;
-  }
-
-  .last-read{
+  .last-read {
     font-size: 14px;
   }
 
-  .progress-text{
-    font-size: 12px;
-    letter-spacing: 2px;
-  }
-
-  .gate-actions{
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .continue-reading,
-  .start-over{
-    width: 100%;
-    padding: 14px;
-  }
-
-  #backToSeasons{
-    top: 15px;
-    left: 15px;
-    font-size: 14px;
-  }
-
-  .hero::before{
-    width: 400px;
-    height: 400px;
-  }
-
-  .hero-content::before{
-    width: 300px;
-    height: 300px;
-  }
-}
-@media (max-width: 480px){
-
-  .hero h1{
-    font-size: 28px;
-    letter-spacing: 3px;
-  }
-
-  .tagline{
+  .progress-text {
     font-size: 13px;
   }
 
-  .season{
-    width: 180px;
-    height: 250px;
+  .modal-actions {
+    flex-direction: column;
+    gap: 12px;
   }
 
-  .gate-box{
-    padding: 25px 15px;
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
   }
 
-  .gate-box h2{
-    font-size: 24px;
+  .section-card {
+    padding: 16px;
+  }
+
+  .section-card h3 {
+    font-size: 20px;
+  }
+
+  .section-card p {
+    font-size: 13px;
+  }
+
+  #ambientBtn {
+    right: 15px;
+    bottom: 15px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .btn-back {
+    position: static;
+    margin-bottom: 15px;
+  }
+}
+
+/* گوشی های کوچک */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+
+  .tagline {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .season {
+    width: 170px;
+    height: 240px;
+  }
+
+  .modal-content h2 {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+
+  .progress-track {
+    height: 6px;
+  }
+
+  .section-card h3 {
+    font-size: 18px;
+  }
+
+  .section-card p {
+    font-size: 12px;
   }
 }

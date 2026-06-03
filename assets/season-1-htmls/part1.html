@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Part 01</title>
+
+    <link rel="stylesheet" href="../style/part1.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- BACKGROUND -->
+
+    <div class="background">
+      <div class="red-glow"></div>
+      <div class="blue-glow"></div>
+      <div class="particles"></div>
+    </div>
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+      <button id="showAllTextBtn">📜 نمایش کل متن</button>
+
+      <button id="backBtn">← خروج از فصل</button>
+
+      <button id="musicBtn">🎧</button>
+    </div>
+
+    <!-- STORY -->
+
+    <main class="story-wrapper">
+      <h1 id="chapterTitle">PART I</h1>
+
+      <div id="story"></div>
+    </main>
+
+    <!-- NAVIGATION -->
+
+    <div class="story-navigation">
+      <button id="prevPart">← Previous</button>
+
+      <button id="nextPart">Next →</button>
+    </div>
+
+    <!-- MUSIC -->
+
+    <audio id="bg-music" loop></audio>
+
+    <!-- TRANSITION -->
+
+    <div id="transitionOverlay">
+      <div class="transition-content">
+        <div class="transition-line"></div>
+
+        <h2 id="transitionTitle"></h2>
+
+        <p>Loading Memory...</p>
+      </div>
+    </div>
+
+    <script src="../js/typewriter.js"></script>
+  </body>
+</html>

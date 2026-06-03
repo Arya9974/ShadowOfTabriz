@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/characters.css" />
+  </head>
+  <body>
+    <header>
+      <h1>آرشیو شخصیت‌ها</h1>
+      <div class="search-box">
+        <span class="search-icon"></span>
+        <button id="backToLanding" class="btn-landing">
+          🏠 بازگشت به صفحه اصلی
+        </button>
+        <input type="text" id="searchInput" placeholder="جستجوی شخصیت..." />
+      </div>
+      <div id="progressContainer">
+        <span id="progressText">0 / 0 شخصیت کشف شده</span>
+        <div id="progressBar"><div id="progressFill"></div></div>
+      </div>
+    </header>
+
+    <section class="filters">
+      <div class="category-buttons">
+        <button class="tab active" data-category="main">شخصیت اصلی</button>
+        <button class="tab" data-category="important">شخصیت فرعی مهم</button>
+        <button class="tab" data-category="secondary">شخصیت فرعی</button>
+        <button class="tab" data-category="government">شخصیت دولتی</button>
+      </div>
+
+      <div class="status-filters">
+        <button class="status-btn active" data-status="all">همه</button>
+        <button class="status-btn" data-status="alive">زنده</button>
+        <button class="status-btn" data-status="dead">مرده</button>
+      </div>
+    </section>
+
+    <section class="slider">
+      <button id="prev" class="nav-btn">❮</button>
+      <div id="characterContainer"></div>
+      <button id="next" class="nav-btn">❯</button>
+    </section>
+
+    <audio id="themePlayer"></audio>
+
+    <script src="../js/characters-data.js"></script>
+    <script src="../js/characters-app.js"></script>
+  </body>
+</html>

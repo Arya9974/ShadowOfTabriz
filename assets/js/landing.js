@@ -29,41 +29,39 @@ for (let i = 0; i < 40; i++) {
 
   particles.appendChild(p);
 }
-const season1 = document.querySelector(".season");
 
 const gate = document.getElementById("readingGate");
+const seasons = document.querySelectorAll(".season");
 
-season1.addEventListener("click", (e) => {
-  e.preventDefault();
+seasons.forEach((season) => {
+  season.addEventListener("click", (e) => {
+    e.preventDefault();
 
-  gate.classList.add("active");
+    gate.classList.add("active");
+
+    ambient.volume = 0.08;
+
+    renderProgress();
+    renderArchive();
+    renderCharacters();
+  });
 });
 
 const totalParts = 20;
 
 const savedPart = Number(localStorage.getItem("season1Progress")) || 0;
-
-const readPart = savedPart + 1;
-
-const progress = (readPart / totalParts) * 100;
+const progress = (savedPart / totalParts) * 100;
 
 document.querySelector(".progress-fill").style.width = progress + "%";
-
+document.querySelector(".progress-text").textContent =
+  `${Math.floor(progress)}% Completed`;
 document.querySelector(".last-read").textContent =
-  `Last Read: Part ${readPart}`;
-
-document.querySelector(".progress-text").textContent =
-  `${Math.floor(progress)}% Completed`;
+  `Last Read: Part ${savedPart || 1}`;
 
 document.querySelector(".progress-fill").style.width = progress + "%";
 
 document.querySelector(".progress-text").textContent =
   `${Math.floor(progress)}% Completed`;
-
-const lastRead = document.querySelector(".last-read");
-
-
-lastRead.textContent = `Last Read: Part ${savedPart + 1}`;
 
 document.getElementById("backToSeasons").addEventListener("click", () => {
   gate.classList.remove("active");
@@ -74,12 +72,113 @@ document.getElementById("backToSeasons").addEventListener("click", () => {
 const continueBtn = document.getElementById("continueBtn");
 
 continueBtn.addEventListener("click", () => {
-  window.location.href = "assets/season 1 htmls/part1.html";
+  window.location.href = "assets/season-1-htmls/part1.html";
 });
 const restartBtn = document.getElementById("restartBtn");
 
 restartBtn.addEventListener("click", () => {
+  localStorage.removeItem("season1Progress"); // پاک کامل
+
+  window.location.href = "assets/season-1-htmls/part1.html?part=1";
+});
+
+const ambient = document.getElementById("ambient");
+const ambientBtn = document.getElementById("ambientBtn");
+
+let ambientPlaying = false;
+
+ambient.volume = 0.25;
+
+ambientBtn.addEventListener("click", () => {
+  if (!ambientPlaying) {
+    ambient.play();
+
+    ambientBtn.innerHTML = "🔊 Ambient";
+
+    ambientPlaying = true;
+  } else {
+    ambient.pause();
+
+    ambientBtn.innerHTML = "🔇 Ambient";
+
+    ambientPlaying = false;
+  }
+});
+
+if (localStorage.getItem("ambientEnabled") === "true") {
+  ambient.volume = 0.25;
+
+  ambient.play().catch(() => {});
+}
+const backToSeasons = document.getElementById("backToSeasons");
+
+// Open modal
+
+// کم کردن صدای ambient
+ambient.volume = 0.08;
+
+renderProgress();
+renderArchive();
+renderCharacters();
+// Close modal
+backToSeasons.addEventListener("click", () => {
+  gate.classList.remove("active");
+  menu.classList.add("active");
+
+  // برگردوندن صدای ambient
+  ambient.volume = 0.25;
+});
+
+continueBtn.addEventListener("click", () => {
+  const lastPart = getSavedPart();
+
+  const startPart = lastPart > 0 ? lastPart : 1;
+
+  window.location.href = `assets/season-1-htmls/part1.html?part=${startPart}`;
+});
+// Restart
+restartBtn.addEventListener("click", () => {
   localStorage.setItem("season1Progress", 0);
 
-  window.location.href = "assets/season 1 htmls/part1.html";
+  window.location.href = `assets/season-1-htmls/part1.html?part=1`;
+});
+
+// نوار پیشرفت
+function renderProgress() {
+  const totalParts = 20;
+  const saved = getSavedPart();
+
+  const progress = (saved / totalParts) * 100;
+
+  document.querySelector(".progress-fill").style.width = `${progress}%`;
+
+  document.querySelector(".progress-text").textContent =
+    `${Math.floor(progress)}% Completed`;
+
+  document.querySelector(".last-read").textContent =
+    `Last Read: Part ${saved || 1}`;
+}
+// آرشیو
+function renderArchive() {
+  const archiveContainer = document.querySelector(".archive-items");
+  archiveContainer.innerHTML = "";
+  // اینجا می‌تونیم آیتم‌های آرشیو اضافه کنیم
+}
+
+// کاراکترها
+function renderCharacters() {
+  const charContainer = document.querySelector(".character-items");
+  charContainer.innerHTML = "";
+  // اینجا کاراکترها رو اضافه می‌کنیم، حتی می‌تونیم قفل کنیم برای کاراکترهای بعدی
+}
+function checkMobileModal() {
+  if (window.innerWidth <= 768) {
+    document.body.style.overflowX = "hidden";
+  }
+}
+
+window.addEventListener("resize", checkMobileModal);
+checkMobileModal();
+document.getElementById("archiveBtn").addEventListener("click", () => {
+  window.location.href = "../archive/archive.html";
 });

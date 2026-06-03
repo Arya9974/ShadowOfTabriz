@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archive</title>
+
+    <link rel="stylesheet" href="../style/archive.css" />
+  </head>
+  <body>
+    <div class="archive-page">
+      <header class="archive-header">
+        <h1>Season I Archive</h1>
+
+        <p>خاطرات ثبت شده فصل اول</p>
+      </header>
+      <a href="../../index.html" class="back-btn"> ← بازگشت </a>
+      <section class="progress-section">
+        <div class="stat-box">
+          <span id="completedParts">0</span>
+          <small>Completed</small>
+        </div>
+
+        <div class="stat-box">
+          <span id="lastRead">Part 1</span>
+          <small>Last Read</small>
+        </div>
+      </section>
+
+      <div class="progress-info">
+        <span>پیشرفت فصل</span>
+        <span id="progressPercent">0%</span>
+      </div>
+
+      <div class="progress-bar">
+        <div id="progressFill"></div>
+      </div>
+
+      <div class="continue-reading">
+        <span>ادامه مطالعه</span>
+
+        <h3 id="lastPartTitle">Part 1</h3>
+
+        <button id="continueBtn">ادامه مطالعه</button>
+      </div>
+
+      <div id="archiveGrid" class="archive-grid"></div>
+    </div>
+
+    <script src="../js/archive.js"></script>
+  </body>
+</html>
